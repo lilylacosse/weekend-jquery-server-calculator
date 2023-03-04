@@ -13,6 +13,11 @@ app.listen(port, () => {
 // global variables
 
 // app.get('/route', )
-
+app.get("");
 // app.post('/route',)
-//logic
+app.post("/postCalculation", (req, res) => {
+  console.log("post request recieved");
+
+  //convert string to NUMBER
+  //logic
+});
