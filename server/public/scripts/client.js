@@ -3,8 +3,6 @@ $(document).ready(onReady);
 function onReady() {
   console.log("JQ");
   //listeners
-  // 🔴
-  //$().on("click", getMath);
   $("#equals").on("click", gatherInfoForPost);
 
   $("#add").on("click", add);
@@ -13,6 +11,7 @@ function onReady() {
   $("#divide").on("click", divide);
 
   // any initial functions
+  getMath();
 }
 // GLOBAL VARIABLES
 let sign = ``;
@@ -53,7 +52,11 @@ function gatherInfoForPost() {
 
   console.log("calcInfo now:", calcInfo);
 
-  postMath();
+  if (calcInfo.num1 !== "" && calcInfo.signOp !== "" && calcInfo.num2 !== "") {
+    postMath();
+  } else {
+    alert("I think you forgot something!");
+  }
 }
 
 // GET
@@ -64,7 +67,7 @@ function getMath() {
 function postMath() {
   console.log("START POST");
   console.log("calcInfo", calcInfo);
-  $.ajax({ method: "GET", url: "/postCalculation", data: calcInfo })
+  $.ajax({ method: "POST", url: "/postCalculation", data: calcInfo })
     .then()
     .catch();
 }
