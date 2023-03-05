@@ -4,6 +4,7 @@ function onReady() {
   console.log("JQ");
   //listeners
   $("#equals").on("click", gatherInfoForPost);
+  $("#clear").on("click", empty);
 
   $("#add").on("click", add);
   $("#sub").on("click", subtract);
@@ -61,13 +62,43 @@ function gatherInfoForPost() {
 
 // GET
 function getMath() {
-  $.ajax({ method: "GET", url: "/getCalculation" }).then().catch();
+  $.ajax({ method: "GET", url: "/getCalculation" })
+    .then((response) => {
+      console.log("Server response:", response);
+      render(response);
+    })
+    .catch((error) => {
+      console.log("POST failed");
+    });
 }
 // POST
 function postMath() {
   console.log("START POST");
   console.log("calcInfo", calcInfo);
   $.ajax({ method: "POST", url: "/postCalculation", data: calcInfo })
-    .then()
-    .catch();
+    .then((response) => {
+      getMath();
+    })
+    .catch((error) => {
+      console.log("POST failed");
+    });
+}
+
+function render(response) {
+  console.log("START render");
+  $("#result").html(
+    //result
+    `${response.answer}`
+  );
+  $("#history").empty();
+  for (let i of response.history) {
+    //history
+    $("#history").append(`<li>${i}</li>`);
+  }
+  console.log("END render");
+}
+
+function empty() {
+  num1Val = $("#num1").val("");
+  num2Val = $("#num2").val("");
 }
