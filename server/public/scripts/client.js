@@ -6,44 +6,71 @@ function onReady() {
   $("#equals").on("click", gatherInfoForPost);
   $("#clear").on("click", empty);
 
-  $("#add").on("click", add);
-  $("#sub").on("click", subtract);
-  $("#multiply").on("click", multiply);
-  $("#divide").on("click", divide);
-
+  $(".operator").on("click", identifyOperator);
+  $(".num").on("click", appendNum1Val);
   // any initial functions
   getMath();
 }
 // GLOBAL VARIABLES
 let sign = ``;
-let num1Val = 0;
-let num2Val = 0;
+let num1Select = ``;
+let num2Select = ``;
+let opIdentified = false;
+let num1Val = ``;
+let num2Val = ``;
 let calcInfo = {};
 // FUNCTIONS
+function appendNum1Val() {
+  console.log("START appendNum1Val");
+  num1Select = $(this).text();
+  console.log("num1Select", num1Select);
 
-function add() {
-  sign = `+`;
-  console.log("sign:", sign);
-}
-function subtract() {
-  sign = `-`;
-  console.log("sign:", sign);
-}
-function multiply() {
-  sign = `*`;
-  console.log("sign:", sign);
-}
-function divide() {
-  sign = `/`;
-  console.log("sign:", sign);
+  num1Val += `${num1Select}`;
+  console.log("num1Val:", num1Val);
+  $("#n1").html(num1Val);
+
+  console.log("END appendNum1Val");
+
+  // if (opIdentified) {
+  //   return;
+  // }
 }
 
-function gatherInfoForPost() {
-  num1Val = $("#num1").val();
-  console.log("num1Val", num1Val);
+function identifyOperator() {
+  console.log("START identifyOperator");
+  $(".num").off();
+  let operator = $(this).text();
+  console.log("operator:", operator);
 
-  num2Val = $("#num2").val();
+  if (operator === `+`) {
+    sign = `+`;
+  } else if (operator === `-`) {
+    sign = `-`;
+  } else if (operator === `*`) {
+    sign = `*`;
+  } else if (operator === `/`) {
+    sign = `/`;
+  } else {
+  }
+  console.log("sign:", sign);
+  $("#op").html(sign);
+  opIdentified = true;
+  $(".num").on("click", appendNum2Val);
+  console.log("END identifyOperator");
+}
+function appendNum2Val() {
+  console.log("START appendNum2Val");
+
+  num2Select = $(this).text();
+  console.log("num2Select:", num2Select);
+
+  num2Val += `${num2Select}`;
   console.log("num2Val:", num2Val);
+  $("#n2").html(num2Val);
+  console.log("END appendNum2Val");
+}
+function gatherInfoForPost() {
+  console.log("START gatherInfoForPost");
 
   calcInfo = {
     num1: num1Val,
@@ -58,6 +85,8 @@ function gatherInfoForPost() {
   } else {
     alert("I think you forgot something!");
   }
+  empty();
+  console.log("END gatherInfoForPost");
 }
 
 // GET
@@ -95,10 +124,18 @@ function render(response) {
     //history
     $("#history").append(`<li>${i}</li>`);
   }
+  $(".num").off();
+  $(".num").on("click", appendNum1Val);
   console.log("END render");
 }
 
 function empty() {
-  num1Val = $("#num1").val("");
-  num2Val = $("#num2").val("");
+  $("#n1").empty();
+  $("#op").empty();
+  $("#n2").empty();
+  num1Select = ``;
+  num2Select = ``;
+  opIdentified = false;
+  num1Val = ``;
+  num2Val = ``;
 }

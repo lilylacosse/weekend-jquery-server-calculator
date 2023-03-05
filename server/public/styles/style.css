@@ -1,0 +1,11 @@
+#display {
+    display: flex;
+    flex-direction:row;
+    justify-content: center;
+    align-items: flex-start;
+    height: 20px;
+    width: 110px;
+    padding: 1px;
+    background-color: #f5f5f5;
+    font-size: 18px;
+}
