@@ -14,14 +14,42 @@
   <body>
     <h1>Weekend Challenge #2</h1>
     <h2>Server Side Calculator</h2>
-    <input type="number" name="num1" id="num1" placeholder="number" />
-    <button id="add">+</button>
-    <button id="sub">-</button>
-    <button id="multiply">*</button>
-    <button id="divide">/</button>
-    <input type="number" name="num2" id="num2" placeholder="number" />
-    <button id="equals">=</button>
-    <button id="clear">C</button>
+    <table>
+      <tr>
+        <div id="display">
+          <span id="n1"></span>
+          <span id="op"></span>
+          <span id="n2"></span>
+        </div>
+
+        <button id="clear">C</button>
+      </tr>
+      <tr>
+        <td><button class="num">7</button></td>
+        <td><button class="num">8</button></td>
+        <td><button class="num">9</button></td>
+        <td><button class="operator" id="add">+</button></td>
+      </tr>
+      <tr>
+        <td><button class="num">4</button></td>
+        <td><button class="num">5</button></td>
+        <td><button class="num">6</button></td>
+        <td><button class="operator" id="sub">-</button></td>
+      </tr>
+      <tr>
+        <td><button class="num">1</button></td>
+        <td><button class="num">2</button></td>
+        <td><button class="num">3</button></td>
+        <td><button class="operator" id="multiply">*</button></td>
+      </tr>
+      <tr>
+        <td><button class="num">0</button></td>
+        <td><button class="num">.</button></td>
+        <td><button id="equals">=</button></td>
+        <td><button class="operator" id="divide">/</button></td>
+      </tr>
+      <!-- <input type="number" name="num2" id="num2" placeholder="number" /> -->
+    </table>
     <h2>Result: <span id="result"></span></h2>
     <ul id="history">
       <li>No History</li>
