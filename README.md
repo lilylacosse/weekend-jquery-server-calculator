@@ -4,9 +4,10 @@
 
 _Duration: 12 Hours_
 
-Task: Create a functioning calculator that implements all of the logic on the server-side of the application. D
+Creating the basic calculator and transfering the data from the client to the server side was a worthy challenge. 
+Things got really interesting and fun when I morphed my calculator to actually mimic the look and operating principles of a normal calculator. 
 
-Creating the basic calculator and transfering the data from the client to the server side was a worthy challenge. Things got really interesting and fun when I morphed my calculator from two input fields and the appropriate buttons to an interface that actually mimics the look and operating principles of a normal calculator. 
+Task: Create a functioning calculator that implements all of the logic on the server-side of the application. 
 
 Desire components:
 1. Create a user interface where the user can input two values (2 input elements) and select the type of mathematical operation. 
